@@ -28,6 +28,7 @@ class Rectangle(Figure):
         return self.width*self.height
 
     def __repr__(self):
+        '''Метод __repr__ в Python выдает текстовое или строковое представление сущности или объекта. '''
         return '{} {} цвета шириной {} и высотой {} площадью {}.'.format(
             Rectangle.get_figure_type(),
             self.fc.colorproperty,
