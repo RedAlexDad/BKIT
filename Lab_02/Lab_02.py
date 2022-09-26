@@ -6,7 +6,7 @@ from lab_python_oop.square import Square
 def main():
     r = Rectangle("синего", 3, 2)
     c = Circle("зеленого", 5)
-    s = Square("красного", 5)
+    s = Square("красного", 5s)
     print(r)
     print(c)
     print(s)
