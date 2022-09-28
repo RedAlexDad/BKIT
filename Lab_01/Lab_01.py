@@ -1,5 +1,3 @@
-# Русификация кодировании
-# -*- coding: utf-8 -*-
 import sys
 import math
 
@@ -13,15 +11,16 @@ def get_coef(index, prompt):
             # Вводим с клавиатуры
             print(prompt)
             coef_str = input()
-            # Проверка, есть ли минус и число?
-            if (coef_str[0] == '-'):
-                coef_str_buff = coef_str.replace('-', '')
-                if (coef_str_buff.isdigit()):
+            # Проверка, есть ли минус числа и нулевой коэффициент?
+            if (coef_str[0] != '0' or index == 2 or index == 3):
+                if (coef_str[0] == '-'):
+                    coef_str_buff = coef_str.replace('-', '')
+                    if (coef_str_buff.isdigit()):
+                        break
+                if (coef_str.isdigit()):
                     break
 
-            if (coef_str.isdigit()):
-                break
-            print("Ошибка! Введите число!")
+            print("Ошибка! Введите натуральное число!")
     # Переводим строку в действительное число
     coef = float(coef_str)
     return coef
@@ -63,24 +62,32 @@ def get_roots(a, b, c):
 
 
 def main():
-    a = get_coef(1, 'Введите коэффициент А:')
-    b = get_coef(2, 'Введите коэффициент B:')
-    c = get_coef(3, 'Введите коэффициент C:')
-    # Вычисление корней
-    roots = get_roots(a, b, c)
-    # Вывод корней
-    len_roots = len(roots)
-    if len_roots == 0:
-        print('Нет корней')
-    elif len_roots == 2:
-        print('Два кореня: {} и {}'.format(round(roots[0], 2), round(roots[1], 2)))
-    elif len_roots == 3 and roots[0] == 0.0:
-        print('Три корня: {} и {} и {}'.format(round(roots[0], 2), round(roots[1], 2), round(roots[2], 2)))
-    elif len_roots == 3:
-        print('Два корня: {} и {}'.format(round(roots[1], 2), round(roots[2], 2)))
-    elif len_roots == 4:
-        print('Четыре корня: {} и {} и {} и {}'.format(round(roots[0], 2), round(roots[1], 2), round(roots[2], 2),
-                                                       round(roots[3], 2)))
+    while True:
+        try:
+            a = get_coef(1, 'Введите коэффициент А:')
+            b = get_coef(2, 'Введите коэффициент B:')
+            c = get_coef(3, 'Введите коэффициент C:')
+            # Вычисление корней
+            roots = get_roots(a, b, c)
+
+            # Вывод корней
+            len_roots = len(roots)
+            if len_roots == 0:
+                print('Нет корней')
+            elif len_roots == 2:
+                print('Два кореня: {} и {}'.format(round(roots[0], 2), round(roots[1], 2)))
+            elif len_roots == 3 and roots[0] == 0.0:
+                print('Три корня: {} и {} и {}'.format(round(roots[0], 2), round(roots[1], 2), round(roots[2], 2)))
+            elif len_roots == 3:
+                print('Два корня: {} и {}'.format(round(roots[1], 2), round(roots[2], 2)))
+            elif len_roots == 4:
+                print(
+                    'Четыре корня: {} и {} и {} и {}'.format(round(roots[0], 2), round(roots[1], 2), round(roots[2], 2),
+                                                             round(roots[3], 2)))
+            break
+        except ArithmeticError:
+            print('Ошибка! Коэффициент a должен быть натуральным числом!')
+            break
 
 
 # Если сценарий запущен из командной строки
