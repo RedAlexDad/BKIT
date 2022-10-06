@@ -16,19 +16,22 @@ def get_coef(index, prompt):
             if (int(coef_str) > 0 and int(coef_str) < 30):
                 break
             else:
-                print('Ошибка! Введите номер варианта от 0 до 30')
+                print('Ошибка! Введите номер варианта от 1 до 30')
     # Переводим строку в действительное число
     coef = float(coef_str)
     return coef
 
 def main():
     N = get_coef(1, 'Введите номер вашего варианта по списку журнала')
-    r = Rectangle("синего", N, N)
-    c = Circle("зеленого", N)
-    s = Square("красного", N)
-    print(r)
-    print(c)
-    print(s)
+    if (N > 0 and N < 30):
+        r = Rectangle("синего", N, N)
+        c = Circle("зеленого", N)
+        s = Square("красного", N)
+        print(r)
+        print(c)
+        print(s)
+    else:
+        print('Ошибка! Введите номер варианта от 1 до 30')
 
 if __name__ == "__main__":
     main()
