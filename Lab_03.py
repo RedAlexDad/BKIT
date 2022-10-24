@@ -2,7 +2,7 @@ import sys
 from lab_python_fp.filed import *
 from lab_python_fp.gen_random import *
 from lab_python_fp.unique import *
-
+from lab_python_fp.sort import *
 
 
 def get_argv(index, prompt):
@@ -106,8 +106,11 @@ def main():
             
     elif(switch == 4):
         print('Задача №4 - файл sort.py')
+        exersise_4_sort()
+        
     elif(switch == 5):
         print('Задача №5 - print_result.py')
+        
     elif(switch == 6):
         print('Задача №6 - print_result.py')
     elif(switch == 7):
