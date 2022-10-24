@@ -3,6 +3,8 @@ from lab_python_fp.filed import *
 from lab_python_fp.gen_random import *
 from lab_python_fp.unique import *
 from lab_python_fp.sort import *
+from lab_python_fp.print_result import *
+from lab_python_fp.cm_timer import *
 
 
 def get_argv(index, prompt):
@@ -34,7 +36,6 @@ def get_argv_value(index, prompt):
 def main():
     print("Main")
 
-
     '''
     print('Введите номер пункта для выполнения задач')
     print('Задача №1 - field.py')
@@ -42,8 +43,8 @@ def main():
     print('Задача №3 - unique.py')
     print('Задача №4 - файл sort.py')
     print('Задача №5 - print_result.py')
-    print('Задача №6 - print_result.py')
-    print('Задача №7 - файл cm_timer.py')
+    print('Задача №6 - cm_timer.py')
+    print('Задача №7 - process_data.py')
 
     switch = int(input('Введите номер пункта: '))
 
@@ -110,6 +111,7 @@ def main():
         
     elif(switch == 5):
         print('Задача №5 - print_result.py')
+        exercise_5_pritn_result()
         
     elif(switch == 6):
         print('Задача №6 - print_result.py')

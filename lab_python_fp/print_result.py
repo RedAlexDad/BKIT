@@ -29,6 +29,7 @@ test_4
 
 # Синтаксис для обертывания функции в декоратор
 
+
 def print_result(function):
     def control(arr=[], *args, **kwargs):
         # печатает название вызываемой функции
@@ -65,10 +66,7 @@ def test_3():
 def test_4():
     return [1, 2]
 
-
-
-#def exercise_5_decoration():
-if __name__ == '__main__':
+def exercise_5_pritn_result():
     test_1()
     test_2()
     test_3()
