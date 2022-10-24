@@ -36,6 +36,7 @@ def get_argv_value(index, prompt):
 def main():
     print("Main")
 
+
     '''
     print('Введите номер пункта для выполнения задач')
     print('Задача №1 - field.py')
@@ -106,7 +107,7 @@ def main():
             print()
             
     elif(switch == 4):
-        print('Задача №4 - файл sort.py')
+        print('Задача №4 -  sort.py')
         exercise_4_sort()
         
     elif(switch == 5):
@@ -114,9 +115,12 @@ def main():
         exercise_5_pritn_result()
         
     elif(switch == 6):
-        print('Задача №6 - print_result.py')
+        print('Задача №6 - cm_timer.py')
+        exercise_6_cm_timer()
     elif(switch == 7):
-        print('Задача №7 - файл cm_timer.py')
+        print('Задача №7 -  process_data.py')
+        
+        
     else:
         print('Нет такого пункта')
     '''
