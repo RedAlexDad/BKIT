@@ -17,7 +17,7 @@ data = [4, -30, 30, 100, -100, 123, 1, 0, -1, -4]
 
 data = [4, -30, 100, -100, 123, 1, 0, -1, -4]
 
-def exersise_4_sort():
+def exercise_4_sort():
     print(f'Исходный список:\n {data}')
     result_with_lambda = sorted(data, key=lambda i: -abs(i))
     print(f'Отсортированный список с применением lambda-фнукции:\n {data}')

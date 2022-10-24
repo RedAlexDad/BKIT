@@ -106,7 +106,7 @@ def main():
             
     elif(switch == 4):
         print('Задача №4 - файл sort.py')
-        exersise_4_sort()
+        exercise_4_sort()
         
     elif(switch == 5):
         print('Задача №5 - print_result.py')
