@@ -1,5 +1,3 @@
-from .gen_random import *
-
 # Итератор для удаления дубликатов
 class Unique(object):
     def __init__(self, items, **kwargs):

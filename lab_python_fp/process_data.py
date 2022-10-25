@@ -41,18 +41,23 @@
 '''
 
 import json
-import sys
 # Сделаем другие необходимые импорты
-from print_result import *
-from sort import *
+from operator import concat
+from lab_python_fp.filed import *
+from lab_python_fp.unique import *
+from lab_python_fp.sort import *
+from lab_python_fp.print_result import *
+from lab_python_fp.cm_timer import *
+from lab_python_fp.gen_random import *
 
-
-path = 'data_light.json'
+path = '../data_light.json'
 
 # Необходимо в переменную path сохранить путь к файлу, который был передан при запуске сценария
 
-with open(path) as f:
+# Преобразуем в UTF-8 кодировку, иначе программа неправильно прочтет файл
+with open(path, 'r', encoding='UTF-8') as f:
     data = json.load(f)
+    # print(data)
 
 # Далее необходимо реализовать все функции по заданию, заменив `raise NotImplemented`
 # Предполагается, что функции f1, f2, f3 будут реализованы в одну строку
@@ -60,24 +65,36 @@ with open(path) as f:
 
 @print_result
 def f1(arg):
-    raise NotImplemented
+    # Подбираем названия работы, которые не повторяют друг друга, в список
+    # info_job_name = Unique([i['job-name'] for i in field(data, 'job-name')], ignore_case=True)
+    # Отсортируем
+    # info_job_name_sorted = sorted(info_job_name, key=str, reverse = False)
+    # return info_job_name.arr.sort()
+    # return sorted(info_job_name, key=str, reverse = False)
+    # return sorted(list(set([el['job-name'] for el in arg])), key=lambda a: a.lower())
+    return list(Unique([i['job-name'] for i in field(data, 'job-name')], ignore_case=True))
 
 
 @print_result
 def f2(arg):
-    raise NotImplemented
+    return list(filter(lambda i: i.startswith('программист'), arg))
 
 
 @print_result
 def f3(arg):
-    raise NotImplemented
+    return list(map(lambda x: concat(x, ' c опытом Python'), arg))
 
 
 @print_result
 def f4(arg):
-    raise NotImplemented
+    return list(zip(arg, ['зарплата ' + str(el) + ' руб.' for el in gen_random(len(arg), 100000, 200000)]))
 
 
-#if __name__ == '__main__':
-    #with cm_timer_1():
-        #f4(f3(f2(f1(data))))
+if __name__ == '__main__':
+    with cm_timer_1():
+        # ex_1 = f1(data)
+        # ex_2 = f2(f1(data))
+        # ex_3 = f3(f2(f1(data)))
+        ex_4 = (f4(f3(f2(f1(data)))))
+        # (f4(f3(f2(f1(data)))))
+        print()

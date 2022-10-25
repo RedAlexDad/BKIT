@@ -6,7 +6,6 @@ from lab_python_fp.sort import *
 from lab_python_fp.print_result import *
 from lab_python_fp.cm_timer import *
 
-
 def get_argv(index, prompt):
     try:
         # Получение значения из командной строки
@@ -34,10 +33,6 @@ def get_argv_value(index, prompt):
 
 
 def main():
-    print("Main")
-
-
-    '''
     print('Введите номер пункта для выполнения задач')
     print('Задача №1 - field.py')
     print('Задача №2 - gen_random.py')
@@ -76,35 +71,37 @@ def main():
     elif(switch == 2):
         print('Задача №2 - gen_random.py')
         print('Генерация случайных чисел:')
-        gen_random(get_argv_value(1, 'Введите кол-во: '), get_argv_value(2, 'Введите диапазон от: '), get_argv_value(3, 'Введите диапазон до: '))
+        value = gen_random(get_argv_value(1, 'Введите кол-во: '), get_argv_value(2, 'Введите диапазон от: '), get_argv_value(3, 'Введите диапазон до: '))
+        print(value)
 
     elif(switch == 3):
         print('Задача №3 - unique.py')
-            data = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]
-            print(data)
-            a = Unique(data)
-            for i in Unique(a):
-                print(i, end=' ')
-            print()
-        
-            data1 = gen_random(10, 1, 3)
-            print(data1)
-            b = Unique(data1)
-            for i in Unique(b):
-                print(i, end=' ')
-            print()
-        
-            data2 = ['a', 'A', 'b', 'B', 'a', 'A', 'b', 'B']
-            print(data2)
-            c = Unique(data2)
-            for i in Unique(c):
-                print(i, end=' ')
-            print()
-            
-            d = Unique(data2, ignore_case=True)
-             for i in Unique(d):
-                print(i, end=' ')
-            print()
+        data = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]
+        print(data)
+        a = Unique(data)
+        for i in Unique(a):
+            print(i, end=' ')
+        print()
+
+        data1 = gen_random(10, 1, 3)
+        print(data1)
+        b = Unique(data1)
+        for i in Unique(b):
+            print(i, end=' ')
+        print()
+
+        data2 = ['a', 'A', 'b', 'B', 'a', 'A', 'b', 'B']
+        print(data2)
+        c = Unique(data2)
+        for i in Unique(c):
+            print(i, end=' ')
+        print()
+
+        d = Unique(data2, ignore_case=True)
+        for i in Unique(d):
+            print(i, end=' ')
+
+        print()
             
     elif(switch == 4):
         print('Задача №4 -  sort.py')
@@ -112,18 +109,19 @@ def main():
         
     elif(switch == 5):
         print('Задача №5 - print_result.py')
-        exercise_5_pritn_result()
+        exercise_5_print_result()
         
     elif(switch == 6):
         print('Задача №6 - cm_timer.py')
         exercise_6_cm_timer()
+
     elif(switch == 7):
         print('Задача №7 -  process_data.py')
-        
-        
+        # exercise_6_process_data()
+        print('Переходите в директорию lab_python_fp в файл process_data.py, чтобы выполнить это задание')
+
     else:
         print('Нет такого пункта')
-    '''
 
 
 if __name__ == '__main__':

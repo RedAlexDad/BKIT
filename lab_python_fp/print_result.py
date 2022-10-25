@@ -38,11 +38,26 @@ def print_result(function):
             result = function(*args, **kwargs)
         else:
             result = function(arr, *args, **kwargs)
-        if type(result) is list:
+
+        '''if type(result) is not int and type(result) is not float:
+            if type(result[0]) is tuple:
+                for arr_item_index in range(len(result)):
+                    word = ''
+                    for item in result[arr_item_index]:
+                        word = word + ' ' + item
+                    word = word.replace(' ', '', 1)
+                    result[arr_item_index] = word'''
+
+        if type(result) == int or type(result) == str:
+            print(result)
+        elif type(result) is list:
             print('\n'.join(map(str, result)))
         elif type(result) is dict:
             for key, el in result.items():
                 print(f'{key} = {el}')
+        elif type(result) == zip:
+            for name, number in result:
+                print(name, number)
         else:
             print(result)
         return result
@@ -66,7 +81,7 @@ def test_3():
 def test_4():
     return [1, 2]
 
-def exercise_5_pritn_result():
+def exercise_5_print_result():
     test_1()
     test_2()
     test_3()
