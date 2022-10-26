@@ -44,8 +44,9 @@ def get_coef(index, prompt):
 
 def get_roots(a, b, c):
     result = []
-
     D = b * b - 4 * a * c
+
+    # Если дискриминат равен нулю, то корень может быть только одним
     if D == 0.0:
         root = -b / (2.0 * a)
         result.append(root)
@@ -54,6 +55,7 @@ def get_roots(a, b, c):
             result.append(root1)
             result.append(-root1)
 
+    # Если дискриминат больше нули, то корень может быть четырем
     elif D > 0.0:
         sqD = math.sqrt(D)
         root1 = (-b + sqD) / (2.0 * a)
@@ -90,6 +92,8 @@ def main():
             len_roots = len(roots)
             if len_roots == 0:
                 print('Нет корней')
+            elif len_roots == 1:
+                print('Один корень {}'.format(round(roots[0], 2)))
             elif len_roots == 2:
                 print('Два кореня: {} и {}'.format(round(roots[0], 2), round(roots[1], 2)))
             elif len_roots == 3 and roots[0] == 0.0:
