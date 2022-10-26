@@ -6,6 +6,21 @@ def get_coef(index, prompt):
     try:
         # Пробуем прочитать коэффициент из командной строки
         coef_str = sys.argv[index]
+
+        if(coef_str[0] == '-'):
+            coef_str = sys.argv[index].replace('-','')
+            # print('coef_str_if', coef_str)
+        else:
+            coef_str = sys.argv[index]
+            # print('coef_str_else', coef_str)
+
+        if(coef_str.isdigit() == True):
+            coef_str = sys.argv[index]
+            # print(f'{coef_str} явл-ется числом', )
+        else:
+            print('Ошибка! Введите натуральное число!')
+            coef_str = 0
+
     except:
         while True:
             # Вводим с клавиатуры
@@ -21,6 +36,7 @@ def get_coef(index, prompt):
                     break
 
             print("Ошибка! Введите натуральное число!")
+
     # Переводим строку в действительное число
     coef = float(coef_str)
     return coef
