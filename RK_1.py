@@ -103,6 +103,5 @@ def main():
     array_list = sorted(array_list, key=lambda item: item[0])
     print(*array_list)
 
-
 if __name__ == '__main__':
     main()
