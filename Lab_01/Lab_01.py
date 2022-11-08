@@ -1,7 +1,6 @@
 import sys
 import math
 
-
 def get_coef(index, prompt):
     try:
         # Пробуем прочитать коэффициент из командной строки
@@ -19,7 +18,6 @@ def get_coef(index, prompt):
             # print(f'{coef_str} явл-ется числом', )
         else:
             print('Ошибка! Введите натуральное число!')
-            coef_str = 0
 
     except:
         while True:
@@ -85,6 +83,7 @@ def main():
             a = get_coef(1, 'Введите коэффициент А:')
             b = get_coef(2, 'Введите коэффициент B:')
             c = get_coef(3, 'Введите коэффициент C:')
+
             # Вычисление корней
             roots = get_roots(a, b, c)
 
@@ -105,8 +104,8 @@ def main():
                     'Четыре корня: {} и {} и {} и {}'.format(round(roots[0], 2), round(roots[1], 2), round(roots[2], 2),
                                                              round(roots[3], 2)))
             break
-        except ArithmeticError:
-            print('Ошибка! Коэффициент a должен быть натуральным числом!')
+        except:
+            print('Ошибка заполнения!')
             break
 
 
