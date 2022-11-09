@@ -147,8 +147,8 @@ def main():
         exercise_4_sort()
 
         if (len(sys.argv) > 1):
-            buff = sys.argv[1]
-            for i in range(2, len(sys.argv)):
+            buff = sys.argv[2]
+            for i in range(3, len(sys.argv)):
                 buff = buff + ' ' + sys.argv[i]
 
             data_argv = into_tuple_from_str_in_value(buff)
