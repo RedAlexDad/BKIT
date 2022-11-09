@@ -1,3 +1,6 @@
+import sys
+from convert import *
+
 goods = [
     {'title': 'Ковер', 'price': 2000, 'color': 'green'},
     {'title': 'Диван для отдыха', 'price': 5300, 'color': 'black'}
@@ -25,17 +28,30 @@ def field(items, *args):
     except:
         print('Ошибка! Отсутствует список в качестве переданного аргумента!')
 
-# Преобразование в строку из кортежа
-def into_tuple_from_str(str):
-    tuple_buff = []
-    str_buff = ''
-    for i in range(len(str)):
-        if (str[i] == ' '):
-            tuple_buff.append(str_buff)
-            str_buff = ''
+def main():
+    print('Задача №1 - field.py')
+    mas = ''
+    if (len(sys.argv) == 1):
+        count_argv = int(input('Введите кол-во желаемых аргументов: '))
+        if (count_argv > 0):
+            for i in range(0, count_argv + 1):
+                # print('{}-ый аргумент'.format(i + 1))
+                mas += (get_argv(i, '-ый аргумент: '))
+                # print('{}-ый аргумент: {}'.format(i + 1, mas[i]))
+                mas += ' '
+            print(field(goods, mas))
         else:
-            str_buff += str[i]
+            print('Ошибка введения кол-во аргументов!')
+    elif (len(sys.argv) > 1):
+        for i in range(0, len(sys.argv)):
+            # print('{}-ый аргумент'.format(i + 1))
+            mas += (get_argv(i, '-ый аргумент: '))
+            # print('{}-ый аргумент: {}'.format(i + 1, mas[i]))
+            mas += ' '
+        print(field(goods, mas))
+    else:
+        print('Ошибка введения аргументов!')
 
-    tuple_buff.append(str_buff)
 
-    return tuple_buff
+if __name__ == '__main__':
+    main()
