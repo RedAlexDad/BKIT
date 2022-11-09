@@ -43,14 +43,14 @@
 import json
 # Сделаем другие необходимые импорты
 from operator import concat
-from lab_python_fp.filed import *
-from lab_python_fp.unique import *
-from lab_python_fp.sort import *
-from lab_python_fp.print_result import *
-from lab_python_fp.cm_timer import *
-from lab_python_fp.gen_random import *
+from lab_python_fp.filed import field
+from lab_python_fp.unique import Unique
+from lab_python_fp.sort import exercise_4_sort
+from lab_python_fp.print_result import print_result
+from lab_python_fp.cm_timer import cm_timer_1
+from lab_python_fp.gen_random import gen_random
 
-path = '../data_light.json'
+path = 'data_light.json'
 
 # Необходимо в переменную path сохранить путь к файлу, который был передан при запуске сценария
 

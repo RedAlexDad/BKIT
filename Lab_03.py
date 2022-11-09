@@ -31,6 +31,19 @@ def get_argv_value(index, prompt):
     coef = int(coef_str)
     return coef
 
+def into_tuple_from_str_in_value(str):
+    tuple_buff = []
+    str_buff = ''
+    for i in range(len(str)):
+        if (str[i] == ' '):
+            tuple_buff.append(int(str_buff))
+            str_buff = ''
+        else:
+            str_buff += str[i]
+
+    tuple_buff.append(int(str_buff))
+
+    return tuple_buff
 
 def main():
     print('Введите номер пункта для выполнения задач')
@@ -42,7 +55,8 @@ def main():
     print('Задача №6 - cm_timer.py')
     print('Задача №7 - process_data.py')
 
-    switch = int(input('Введите номер пункта: '))
+    # switch = int(input('Введите номер пункта: '))
+    switch = get_argv_value(1, 'Введите номер пункта: ')
 
     if(switch == 1):
         print('Задача №1 - field.py')
@@ -71,8 +85,12 @@ def main():
     elif(switch == 2):
         print('Задача №2 - gen_random.py')
         print('Генерация случайных чисел:')
-        value = gen_random(get_argv_value(1, 'Введите кол-во: '), get_argv_value(2, 'Введите диапазон от: '), get_argv_value(3, 'Введите диапазон до: '))
-        print(value)
+        size = get_argv_value(2, 'Введите кол-во: ')
+        if(size < 1):
+            print('Ошибка! Разер больше 0 должен быть')
+        else:
+            value = gen_random(get_argv_value(2, 'Введите кол-во: '), get_argv_value(3, 'Введите диапазон от: '), get_argv_value(4, 'Введите диапазон до: '))
+            print(value)
 
     elif(switch == 3):
         print('Задача №3 - unique.py')
@@ -101,11 +119,49 @@ def main():
         for i in Unique(d):
             print(i, end=' ')
 
-        print()
+        if (len(sys.argv) > 1):
+            buff = sys.argv[2]
+            for i in range(2, len(sys.argv)):
+                buff = buff + ' ' + sys.argv[i]
+
+            data3 = into_tuple_from_str(buff)
+
+            print(data3)
+            c = Unique(data3)
+            print('С чувствительным регистром')
+            for i in Unique(c):
+                print(i, end=' ')
+            print()
+
+            print(data3)
+            c = Unique(data3, ignore_case=True)
+            print('Без чувствительного регистра')
+            for i in Unique(c):
+                print(i, end=' ')
+            print()
+        else:
+            print('Ошибка введения аргументов!')
             
     elif(switch == 4):
         print('Задача №4 -  sort.py')
         exercise_4_sort()
+
+        if (len(sys.argv) > 1):
+            buff = sys.argv[1]
+            for i in range(2, len(sys.argv)):
+                buff = buff + ' ' + sys.argv[i]
+
+            data_argv = into_tuple_from_str_in_value(buff)
+
+            print(f'Исходный список:\n {data_argv}')
+
+            result_with_lambda = sorted(data_argv, key=lambda i: -abs(i))
+            print(f'Отсортированный список с применением lambda-фнукции:\n {result_with_lambda}')
+
+            result = sorted(data_argv, key=abs, reverse=True)
+            print(f'Отсортированный список без применении lambda-функции:\n {result}')
+        else:
+            print('Ошибка введения аргументов!')
         
     elif(switch == 5):
         print('Задача №5 - print_result.py')
@@ -115,10 +171,10 @@ def main():
         print('Задача №6 - cm_timer.py')
         exercise_6_cm_timer()
 
-    elif(switch == 7):
-        print('Задача №7 -  process_data.py')
+    # elif(switch == 7):
+        # print('Задача №7 -  process_data.py')
         # exercise_6_process_data()
-        print('Переходите в директорию lab_python_fp в файл process_data.py, чтобы выполнить это задание')
+        # print('Переходите в директорию lab_python_fp в файл process_data.py, чтобы выполнить это задание')
 
     else:
         print('Нет такого пункта')
