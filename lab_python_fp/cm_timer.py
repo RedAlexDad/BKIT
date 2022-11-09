@@ -38,12 +38,9 @@ def cm_timer_2():
     end_time = time()
     print(f'Time of work: {end_time - start_time}')
 
-def main():
+def exercise_6_cm_timer():
     with cm_timer_1():
         sleep(5.5)
 
     with cm_timer_2():
         sleep(5.5)
-
-if __name__ == "__main__":
-    main()

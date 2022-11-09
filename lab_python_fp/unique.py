@@ -1,8 +1,4 @@
 # Итератор для удаления дубликатов
-from gen_random import *
-from convert import *
-import sys
-
 class Unique(object):
     def __init__(self, items, **kwargs):
         # Нужно реализовать конструктор
@@ -42,74 +38,3 @@ class Unique(object):
     def __iter__(self):
         self.begin = 0
         return self
-def main():
-    print('Задача №3 - unique.py')
-    data = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]
-    print(data)
-    a = Unique(data)
-    for i in Unique(a):
-        print(i, end=' ')
-    print()
-
-    data1 = gen_random(10, 1, 3)
-    print(data1)
-    b = Unique(data1)
-    for i in Unique(b):
-        print(i, end=' ')
-    print()
-
-    data2 = ['a', 'A', 'b', 'B', 'a', 'A', 'b', 'B']
-    print(data2)
-    c = Unique(data2)
-    for i in Unique(c):
-        print(i, end=' ')
-    print()
-
-    d = Unique(data2, ignore_case=True)
-    for i in Unique(d):
-        print(i, end=' ')
-    print()
-
-    if (len(sys.argv) == 1):
-        data3 = into_tuple_from_str(input('Введите любой символ списка: '))
-        print(data3)
-        c = Unique(data3)
-        print('Без чувствительного регистра')
-        for i in Unique(c):
-            print(i, end=' ')
-        print()
-
-        print(data3)
-        c = Unique(data3, ignore_case=True)
-        print('С чувствительным регистром')
-        for i in Unique(c):
-            print(i, end=' ')
-        print()
-
-    elif (len(sys.argv) > 1):
-        buff = sys.argv[1]
-        for i in range(2, len(sys.argv)):
-            buff = buff + ' ' + sys.argv[i]
-
-        data3 = into_tuple_from_str(buff)
-
-        print(data3)
-        c = Unique(data3)
-        print('С чувствительным регистром')
-        for i in Unique(c):
-            print(i, end=' ')
-        print()
-
-        print(data3)
-        c = Unique(data3, ignore_case=True)
-        print('Без чувствительного регистра')
-        for i in Unique(c):
-            print(i, end=' ')
-        print()
-    else:
-        print('Ошибка введения аргументов!')
-
-
-
-if __name__ == "__main__":
-    main()
