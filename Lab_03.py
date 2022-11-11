@@ -89,7 +89,7 @@ def main():
         if(size < 1):
             print('Ошибка! Разер больше 0 должен быть')
         else:
-            value = gen_random(get_argv_value(2, 'Введите кол-во: '), get_argv_value(3, 'Введите диапазон от: '), get_argv_value(4, 'Введите диапазон до: '))
+            value = gen_random(size, get_argv_value(3, 'Введите диапазон от: '), get_argv_value(4, 'Введите диапазон до: '))
             print(value)
 
     elif(switch == 3):
@@ -118,8 +118,25 @@ def main():
         d = Unique(data2, ignore_case=True)
         for i in Unique(d):
             print(i, end=' ')
+        print()
 
-        if (len(sys.argv) > 1):
+        if (len(sys.argv) == 1):
+            data_input = into_tuple_from_str(input('Введите любые значения в списке (между значениями ставьте пробелом)\n'))
+
+            print(data_input)
+            c = Unique(data_input)
+            print('С чувствительным регистром')
+            for i in Unique(c):
+                print(i, end=' ')
+            print()
+
+            print(data_input)
+            c = Unique(data_input, ignore_case=True)
+            print('Без чувствительного регистра')
+            for i in Unique(c):
+                print(i, end=' ')
+            print()
+        elif (len(sys.argv) > 1):
             buff = sys.argv[2]
             for i in range(2, len(sys.argv)):
                 buff = buff + ' ' + sys.argv[i]
@@ -146,7 +163,18 @@ def main():
         print('Задача №4 -  sort.py')
         exercise_4_sort()
 
-        if (len(sys.argv) > 1):
+
+        if (len(sys.argv) == 1):
+            data_input = into_tuple_from_str_in_value(input('Введите любые значения в списке (между значениями ставьте пробелом)\n'))
+
+            print(f'Исходный список:\n {data_input}')
+
+            result_with_lambda = sorted(data_input, key=lambda i: -abs(i))
+            print(f'Отсортированный список с применением lambda-фнукции:\n {result_with_lambda}')
+
+            result = sorted(data_input, key=abs, reverse=True)
+            print(f'Отсортированный список без применении lambda-функции:\n {result}')
+        elif (len(sys.argv) > 1):
             buff = sys.argv[2]
             for i in range(3, len(sys.argv)):
                 buff = buff + ' ' + sys.argv[i]
