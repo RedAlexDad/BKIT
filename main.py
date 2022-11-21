@@ -4,6 +4,7 @@ import math
 from function.get_coef import get_coef
 from function.get_roots import get_roots
 
+
 def main():
     while True:
         try:
@@ -11,7 +12,7 @@ def main():
             b = get_coef(2, 'Введите коэффициент B:')
             c = get_coef(3, 'Введите коэффициент C:')
 
-            if(a == None or b == None or c == None):
+            if (a == None or b == None or c == None):
                 print()
                 print('Ошибка заполнения!')
                 break

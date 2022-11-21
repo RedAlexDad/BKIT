@@ -37,7 +37,7 @@ class test_get_roots(unittest.TestCase):
         )
 
     # Пример №4
-    # Дискриминат равен 0 и 3 корней
+    # Дискриминат равен 0 и 2 корней
     def test_example_4(self):
         self.assertEqual(
             get_roots(1, 0, -16), [2.0, -2.0]

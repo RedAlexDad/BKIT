@@ -1,5 +1,6 @@
 import math
 
+
 def get_roots(a, b, c):
     result = []
     D = b * b - 4 * a * c
