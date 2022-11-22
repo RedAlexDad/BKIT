@@ -38,3 +38,16 @@ Feature: Calculating and getting unique values
       | list                                     | unique          | CASE |
       | ['a', 'A', 'b', 'B', 'a', 'A', 'b', 'B'] | ['a', 'b']      | 1    |
       | ['a', 'C', 'b', 'B', 'c', 'A', 'b', 'B'] | ['a', 'c', 'b'] | 1    |
+
+
+   # Уникальные значения смешанного типа
+  Scenario Outline: We get unique values from the list of the contained all type
+    Given I have a class of unique values
+    And Getting the list: <list>
+    When Finding unique values, case: <CASE>
+    Then Output unique values: <unique>
+
+    Examples:
+      | list                                     | unique                         | CASE |
+      | ['a', 'A', 'b', 'B', '1', '1', '2', '2'] | ['a', 'A', 'b', 'B', '1', '2'] | 0    |
+      | ['a', 'A', 'b', 'B', '1', '1', '2', '2'] | ['a', 'b', '1', '2']           | 1    |

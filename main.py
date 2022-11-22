@@ -5,6 +5,7 @@ from function.Unique import Unique
 
 
 def main():
+    # Проверка на работоспособность
     data = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]
     print(data)
     a = Unique(data)
