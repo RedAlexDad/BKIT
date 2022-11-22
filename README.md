@@ -15,8 +15,8 @@ ___
 | :two:         |                  Объектно-ориентированные возможности языка Python                  |      [Lab: 2](https://github.com/RedAlexDad/BKIT/tree/Lab_02) |
 | :three::four: |                       Функциональные возможности языка Python                       | [Lab: 3-4](https://github.com/RedAlexDad/BKIT/tree/Lab_03-04) |
 | :five:        |                           Модульное тестирование в Python                           |      [Lab: 5](https://github.com/RedAlexDad/BKIT/tree/Lab_05) |
-| :six:         |             Разработка бота для Telegram с использованием языка Python.             |      [Lab: 5](https://github.com/RedAlexDad/BKIT/tree/Lab_05) |
-| :homework:    |         изучение возможностей создания ботов в Telegram и их тестирования.          |                                                    в процессе |
+| :six:         |             Разработка бота для Telegram с использованием языка Python.             |      в процессе |
+| :house:    |         изучение возможностей создания ботов в Telegram и их тестирования.          |                                                    в процессе |
 
 ___
 
