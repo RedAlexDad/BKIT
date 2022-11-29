@@ -53,7 +53,6 @@ def main():
     print('Задача №4 - файл sort.py')
     print('Задача №5 - print_result.py')
     print('Задача №6 - cm_timer.py')
-    print('Задача №7 - process_data.py')
 
     # switch = int(input('Введите номер пункта: '))
     switch = get_argv_value(1, 'Введите номер пункта: ')
