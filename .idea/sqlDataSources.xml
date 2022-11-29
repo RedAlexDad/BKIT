@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="1073180b-99dd-4607-b25a-618961a043d3" />
+          <option name="name" value="db" />
+          <option name="languageId" value="GenericSQL" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/BKIT/db.vdb" />
+            </array>
+          </option>
+        </State>
+      </list>
+    </option>
+  </component>
+</project>
