@@ -1,5 +1,5 @@
 from behave import Given, When, Then
-from function.Unique import Unique
+from function.unique import Unique
 import ast
 
 

@@ -1,7 +1,7 @@
 import sys
 import math
 
-from function.Unique import Unique
+from function.unique import Unique
 
 
 def main():
