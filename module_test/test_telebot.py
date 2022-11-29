@@ -6,7 +6,7 @@ from calculate.work_with_calculate import generate_value
 
 class test_telebot(unittest.TestCase):
 
-    # Проверка создания файла
+    # Проверка создания файла и наличия файла
     def test_create_file_json(self):
         message_from_user_id = 369350478
 
