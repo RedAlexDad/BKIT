@@ -1,4 +1,5 @@
 from operator import itemgetter
+
 '''
 Вариант Г.
 «Книга» и «Глава» связаны соотношением один-ко-многим. 
@@ -10,6 +11,7 @@ from operator import itemgetter
 «Книга» и «Глава» связаны соотношением многие-ко-многим. 
 Выведите список всех связанных глав и книг, отсортированный по книгам, сортировка по главам произвольная. 
 '''
+
 
 # класс Глава
 class Chapter:
@@ -23,11 +25,13 @@ class Chapter:
         # номер книги
         self.book_id = book_id
 
+
 # класс книга
 class Book:
     def __init__(self, id, name):
         self.id = id
         self.name = name
+
 
 class ChapterBook:
     def __init__(self, book_id, chapter_id):
@@ -60,48 +64,65 @@ chapters_of_books = [
 ]
 
 
-def main():
-    one_to_many = [(ch.name, ch.page, book.name)
-                   for book in books
-                   for ch in chapters
-                   if ch.book_id == book.id]
+def one_to_many(books, chapters):
+    return [(ch.name, ch.page, book.name)
+            for book in books
+            for ch in chapters
+            if ch.book_id == book.id]
 
-    many_to_many_temp = [(book.name, ChOfBooks.book_id, ChOfBooks.chapter_id)
-                         for book in books
-                         for ChOfBooks in chapters_of_books
-                         if book.id == ChOfBooks.book_id]
 
-    many_to_many = [(ch.name, ch.page, book_name)
-                    for book_name, book_id, ch_id in many_to_many_temp
-                    for ch in chapters if ch.id == ch_id]
+def many_to_many_temp(books, chapters_of_books):
+    return [(book.name, ChOfBooks.book_id, ChOfBooks.chapter_id)
+            for book in books
+            for ChOfBooks in chapters_of_books
+            if book.id == ChOfBooks.book_id]
 
-    print('Задание Г1')
+
+def many_to_many(books, chapters):
+    return [(ch.name, ch.page, book_name)
+            for book_name, book_id, ch_id in many_to_many_temp(books, chapters_of_books)
+            for ch in chapters if ch.id == ch_id]
+
+
+def exercise_G1(books, chapters):
     array_dict = {}
-    for lib_name, x, book_name in one_to_many:
+    for lib_name, x, book_name in one_to_many(books, chapters):
         # если название книг начинается с 'А'
         if book_name[0] == 'А':
             if book_name in array_dict:
                 array_dict[book_name].append(lib_name)
             else:
                 array_dict[book_name] = [lib_name]
-    print(*array_dict.items())
 
-    print('Задание Г2')
+    return array_dict.items()
+
+def exercies_G2(books, chapters):
     array_dict_2 = {}
-    for x, func_num, book_name in one_to_many:
+    for x, func_num, book_name in one_to_many(books, chapters):
         if book_name in array_dict_2:
             array_dict_2[book_name] = max(array_dict_2[book_name], func_num)
         else:
             array_dict_2[book_name] = func_num
     array_dict_2 = {key: value for key, value in sorted(array_dict_2.items(), key=lambda item: item[1])}
-    print(*array_dict_2.items())
+    return array_dict_2.items()
 
-    print('Задание Г3')
+def exercise_G3(books, chapters):
     array_list = []
-    for lib_name, x, book_name in many_to_many:
+    for lib_name, x, book_name in many_to_many(books, chapters):
         array_list.append((book_name, lib_name))
     array_list = sorted(array_list, key=lambda item: item[0])
-    print(*array_list)
+    return array_list
+
+def main():
+    print('Задание Г1')
+    print(*exercise_G1(books, chapters))
+
+    print('Задание Г2')
+    print(*exercies_G2(books, chapters))
+
+    print('Задание Г3')
+    print(*exercise_G3(books, chapters))
+
 
 if __name__ == '__main__':
     main()
