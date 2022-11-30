@@ -9,18 +9,20 @@ ___
 
 # **Лабораторные работы БКИТ**
 
-| №             |                                    Наименование                                     |                  Ссылка на лаб  |
+| №             |                                    Наименование                                     |                                                 Ссылка на лаб |
 |---------------|:-----------------------------------------------------------------------------------:|--------------------------------------------------------------:|
 | :one:         |                          Основные конструкции языка Python                          |      [Lab: 1](https://github.com/RedAlexDad/BKIT/tree/Lab_01) |
 | :two:         |                  Объектно-ориентированные возможности языка Python                  |      [Lab: 2](https://github.com/RedAlexDad/BKIT/tree/Lab_02) |
 | :three::four: |                       Функциональные возможности языка Python                       | [Lab: 3-4](https://github.com/RedAlexDad/BKIT/tree/Lab_03-04) |
 | :five:        |                           Модульное тестирование в Python                           |      [Lab: 5](https://github.com/RedAlexDad/BKIT/tree/Lab_05) |
-| :six:         |             Разработка бота для Telegram с использованием языка Python.             |      в процессе |
-| :house:    |         изучение возможностей создания ботов в Telegram и их тестирования.          |                                                    в процессе |
+| :six:         |             Разработка бота для Telegram с использованием языка Python.             |     [Lab: 6] (https://github.com/RedAlexDad/BKIT/tree/Lab_06) |
+| :house:    |         изучение возможностей создания ботов в Telegram и их тестирования.          |  [HOMEWORK](https://github.com/RedAlexDad/BKIT/tree/homework) |
 
 ___
 
-| №|          РК           |                                                            Ссылка на РК  |
-| ------------- |:----------------------:|-------------------------------------------------------------------------:|
-| :one: |          РК1           |                      [RK1](https://github.com/RedAlexDad/BKIT/tree/RK_1) |
-|  |         Отчёт          |[RK1](https://github.com/RedAlexDad/BKIT/blob/RK_1/Отчет%20по%20РК№1.pdf) |
+| №     |  РК   |                                                              Ссылка на РК |
+|-------|:-----:|--------------------------------------------------------------------------:|
+| :one: |  РК1  |                       [RK1](https://github.com/RedAlexDad/BKIT/tree/RK_1) |
+|       | Отчёт | [RK1](https://github.com/RedAlexDad/BKIT/blob/RK_1/Отчет%20по%20РК№1.pdf) |
+| :two: |  РК2  |                       [RK2](https://github.com/RedAlexDad/BKIT/tree/RK_2) |
+|       | Отчёт | [RK2](https://github.com/RedAlexDad/BKIT/blob/RK_2/Отчет%20по%20РК№2.pdf) |
