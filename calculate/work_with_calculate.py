@@ -17,7 +17,7 @@ def generate_value(id_user='id_user'):
         str(id_user): [
             {
                 "id": gen_id,
-                "value": v1,
+                "value": (str(v1) + ' ' + str(af) + ' ' + str(v2)),
                 "result": class_calculate.result
             }
         ]
