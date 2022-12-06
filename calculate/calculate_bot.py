@@ -4,7 +4,7 @@ from telebot import types
 import random
 
 from calculate_arifmetic import the_simplest_mathematical_calculator as smc
-from calculate.work_with_calculate import get_info
+from calculate.work_with_calculate import get_info, get_info_with_id_user
 from json_function import merge_data
 
 # Создание бота
@@ -61,14 +61,16 @@ def check_callback_data(callback):
 
     elif(callback.data == "btn2"):
         bot.send_message(callback.message.chat.id, 'История вычисления')
-        data = get_info()
-        for i in data:
-            for j in data[i]:
-                id = j['id']
-                value = j['value']
-                result = j['result']
-                print_info = f'id: {id}\n{value} = {result}\n\n'
-                bot.send_message(callback.message.chat.id, print_info)
+        # Пользовательский идентификатор
+        user_id = str(callback.from_user.id)
+
+        data = get_info_with_id_user(str(user_id))
+        for j in data:
+            id = j['id']
+            value = j['value']
+            result = j['result']
+            print_info = f'id: {id}\n{value} = {result}\n\n'
+            bot.send_message(callback.message.chat.id, print_info)
 
     elif(callback.data == "btn3"):
         img = open('bmstu.jpg', 'rb')
@@ -87,13 +89,13 @@ def start_calculate(message):
 
     @bot.message_handler(content_types=["text"])
     def echo(message):
-        value = calculate(message.text)
-        bot.send_message(message.chat.id, f'Решение: {value}')
+        value = smc(message.text)
+        bot.send_message(message.chat.id, f'Решение: {value.result}')
         data = {
             user_id: [
                 {"id": random.randint(0, 10000),
                  "value": str(message.text),
-                 "result": str(value)}
+                 "result": str(value.result)}
             ]
         }
         merge_data(data, str(message.from_user.id))
@@ -104,17 +106,19 @@ def start_calculate(message):
 def start_get_info(message):
     bot.send_message(message.chat.id, 'История вычисления')
 
-    data = get_info()
+    # Пользовательский идентификатор
+    user_id = str(message.from_user.id)
+
+    data = get_info_with_id_user(str(user_id))
     if (data == 'Файл отсутствует'):
         bot.send_message(message.chat.id, 'База данных отсутствует')
     else:
-        for i in data:
-            for j in data[i]:
-                id = j['id']
-                value = j['value']
-                result = j['result']
-                print_info = f'id: {id}\n{value} = {result}\n\n'
-                bot.send_message(message.chat.id, print_info)
+        for j in data:
+            id = j['id']
+            value = j['value']
+            result = j['result']
+            print_info = f'id: {id}\n{value} = {result}\n\n'
+            bot.send_message(message.chat.id, print_info)
 
 
 @bot.message_handler(commands=['photo'])

@@ -1,6 +1,6 @@
 import random
 
-from calculate.json_function import write_data, load_data, merge_data
+from calculate.json_function import write_data, load_data_all, merge_data, load_data_for_id_user
 from calculate.calculate_arifmetic import the_simplest_mathematical_calculator as smc
 
 
@@ -27,7 +27,14 @@ def generate_value(id_user='id_user'):
 
 def get_info():
     try:
-        data = load_data()
+        data = load_data_all()
+        return data
+    except:
+        return 'Файл отсутствует'
+
+def get_info_with_id_user(id_user):
+    try:
+        data = load_data_for_id_user(id_user)
         return data
     except:
         return 'Файл отсутствует'
