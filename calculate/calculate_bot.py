@@ -4,8 +4,7 @@ from telebot import types
 import random
 
 from calculate_arifmetic import the_simplest_mathematical_calculator as smc
-from calculate.work_with_calculate import get_info, get_info_with_id_user
-from json_function import merge_data
+from json_function import merge_data, delete_data_for_id_user, load_data_for_id_user
 
 # Создание бота
 bot = telebot.TeleBot(config.token)
@@ -14,6 +13,7 @@ HELP = '''
 /start - Меню переключателя
 /calculate - Калькуляторный бот, способный вычислять простейшие арифметические операции
 /get_info - Просмотр историю вычисления с БД
+/clean - Очистка история вычисления
 /photo - Просмотр фото МГТУ им. Н.Э. Баумана
 '''
 
@@ -29,8 +29,9 @@ def start(message):
     markup = types.InlineKeyboardMarkup(row_width=1)
     btn1 = types.InlineKeyboardButton(text="Посчитать", callback_data='btn1')
     btn2 = types.InlineKeyboardButton(text="Посмотреть историю вычисления", callback_data='btn2')
-    btn3 = types.InlineKeyboardButton(text="Показать фото МГТУ им. Н.Э. Баумана", callback_data='btn3')
-    markup.add(btn1, btn2, btn3)
+    btn3 = types.InlineKeyboardButton(text="Очистить историю вычисления", callback_data='btn3')
+    btn4 = types.InlineKeyboardButton(text="Показать фото МГТУ им. Н.Э. Баумана", callback_data='btn4')
+    markup.add(btn1, btn2, btn3, btn4)
     bot.send_message(message.chat.id,
                      text=f"Привет, {message.from_user.first_name}! Я тестовый бот, выберите действия",
                      reply_markup=markup)
@@ -64,15 +65,32 @@ def check_callback_data(callback):
         # Пользовательский идентификатор
         user_id = str(callback.from_user.id)
 
-        data = get_info_with_id_user(str(user_id))
-        for j in data:
-            id = j['id']
-            value = j['value']
-            result = j['result']
-            print_info = f'id: {id}\n{value} = {result}\n\n'
-            bot.send_message(callback.message.chat.id, print_info)
+        data = load_data_for_id_user(str(user_id))
+        if(data == 'Error! There is no such identifier'):
+            bot.send_message(callback.message.chat.id, 'База данных отсутствует')
+        else:
+            for j in range(len(data) - 1):
+                id = data[j]['id']
+                value = data[j]['value']
+                result = data[j]['result']
+                print_info = f'id: {id}\n{value} = {result}\n\n'
+                bot.send_message(callback.message.chat.id, print_info)
 
     elif(callback.data == "btn3"):
+        bot.send_message(callback.message.chat.id, 'Очистка история вычисления')
+        # Пользовательский идентификатор
+        user_id = str(callback.from_user.id)
+
+        check_error = delete_data_for_id_user(user_id)
+
+        if(check_error != 'Error! There is no such identifier'):
+            bot.send_message(callback.message.chat.id, 'Успешно')
+        else:
+            bot.send_message(callback.message.chat.id, check_error)
+
+
+
+    elif(callback.data == "btn4"):
         img = open('bmstu.jpg', 'rb')
         bot.send_photo(callback.message.chat.id, img)
     else:
@@ -109,14 +127,15 @@ def start_get_info(message):
     # Пользовательский идентификатор
     user_id = str(message.from_user.id)
 
-    data = get_info_with_id_user(str(user_id))
-    if (data == 'Файл отсутствует'):
+    data = load_data_for_id_user(str(user_id))
+
+    if (data == 'Error! There is no such identifier'):
         bot.send_message(message.chat.id, 'База данных отсутствует')
     else:
-        for j in data:
-            id = j['id']
-            value = j['value']
-            result = j['result']
+        for j in range(len(data) - 1):
+            id = data[j]['id']
+            value = data[j]['value']
+            result = data[j]['result']
             print_info = f'id: {id}\n{value} = {result}\n\n'
             bot.send_message(message.chat.id, print_info)
 
@@ -126,6 +145,13 @@ def url(message):
     img = open('bmstu.jpg', 'rb')
     bot.send_photo(message.chat.id, img)
 
+@bot.message_handler(commands=['clean'])
+def url(message):
+    bot.send_message(message.chat.id, 'Очистка история вычисления')
+    # Пользовательский идентификатор
+    user_id = str(message.from_user.id)
+
+    delete_data_for_id_user(user_id)
 
 
 bot.polling(none_stop=True)

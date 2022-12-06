@@ -1,6 +1,6 @@
 import unittest
 
-from calculate.json_function import load_data_all, write_data, merge_data, load_data_for_id_user
+from calculate.json_function import load_data_all, write_data, merge_data, load_data_for_id_user, delete_data_for_id_user
 
 data_json = {
     "id_user": [
@@ -178,6 +178,22 @@ class test_json(unittest.TestCase):
     def test_search_id_user_and_get_info(self):
         # Создаем файл с данным
         write_data(data_json_two_users)
+
+        # Проверяем на наличие и сходимости
+        self.assertEqual(
+            load_data_for_id_user('198498415'),
+            [{'id': 8034, 'result': '96.0', 'value': '15 + 81'},
+             {'id': 947, 'result': '5882.0', 'value': '988 + 4894'},
+             {'id': 6363, 'result': '10.0', 'value': '8 + 2 1'},
+             {'id': 6363, 'result': '10.0', 'value': '8 + 2 1'}])
+
+
+    def test_delete_data_of_id_user(self):
+        # Создаем файл с данным
+        write_data(data_json_two_users)
+
+        # Удаляем данные по id пользователя
+        delete_data_for_id_user('369350478')
 
         # Проверяем на наличие и сходимости
         self.assertEqual(
