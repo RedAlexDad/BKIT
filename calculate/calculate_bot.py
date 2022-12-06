@@ -3,7 +3,7 @@ import telebot
 from telebot import types
 import random
 
-from calculate_arifmetic import calculate
+from calculate_arifmetic import the_simplest_mathematical_calculator as smc
 from calculate.work_with_calculate import get_info
 from json_function import merge_data
 
@@ -48,13 +48,13 @@ def check_callback_data(callback):
             # Пользовательский идентификатор
             user_id = str(message.from_user.id)
 
-            value = calculate(message.text)
-            bot.send_message(message.chat.id, f'Решение: {value}')
+            value = smc(message.text)
+            bot.send_message(message.chat.id, f'Решение: {value.result}')
             data = {
                 user_id: [
                     {"id": random.randint(0, 10000),
                      "value": str(message.text),
-                     "result": str(value)}
+                     "result": str(value.result)}
                 ]
             }
             merge_data(data, str(message.from_user.id))
