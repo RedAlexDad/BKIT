@@ -1,6 +1,6 @@
 import unittest
 
-from calculate.json_function import load_data, write_data, merge_data
+from calculate.json_function import load_data_all, write_data, merge_data, load_data_for_id_user, delete_data_for_id_user
 
 data_json = {
     "id_user": [
@@ -72,6 +72,52 @@ data_json_with_id_1 = {
     ]
 }
 
+data_json_two_users = {
+  "369350478": [
+    {
+      "id": 61419,
+      "value": 172,
+      "result": 836.0
+    },
+    {
+      "id": 1158,
+      "value": "10 / 0",
+      "result": "inf"
+    },
+    {
+      "id": 5936,
+      "value": "10 + 10",
+      "result": "20.0"
+    },
+    {
+      "id": 8329,
+      "value": "10 + 10",
+      "result": "20.0"
+    },
+    {
+      "id": 5287,
+      "value": "10 + 10",
+      "result": "20.0"
+    }
+  ],
+  "198498415": [
+    {
+      "id": 8034,
+      "value": "15 + 81",
+      "result": "96.0"
+    },
+    {
+      "id": 947,
+      "value": "988 + 4894",
+      "result": "5882.0"
+    },
+    {
+      "id": 6363,
+      "value": "8 + 2 1",
+      "result": "10.0"
+    }
+  ]
+}
 
 class test_json(unittest.TestCase):
 
@@ -82,7 +128,7 @@ class test_json(unittest.TestCase):
 
         # Проверяем на наличие и сходимости
         self.assertEqual(
-            load_data(),
+            load_data_all(),
             {'id_user': [{'id': 12425, 'result': '70', 'value': '30 + 40'}]}
         )
 
@@ -96,7 +142,7 @@ class test_json(unittest.TestCase):
 
         # Проверяем на наличие и сходимости
         self.assertEqual(
-            load_data(),
+            load_data_all(),
             {'id_user': [
                 {'id': 12425, 'result': '70', 'value': '30 + 40'},
                 {'id': 324, 'result': '100', 'value': '50 + 50'}
@@ -109,7 +155,7 @@ class test_json(unittest.TestCase):
 
         # Проверяем на наличие и сходимости
         self.assertEqual(
-            load_data(),
+            load_data_all(),
             {'369350471': [{'id': 12425, 'result': '70', 'value': '30 + 40'}]}
         )
 
@@ -123,9 +169,36 @@ class test_json(unittest.TestCase):
 
         # Проверяем на наличие и сходимости
         self.assertEqual(
-            load_data(),
+            load_data_all(),
             {'369350471': [
                 {'id': 12425, 'result': '70', 'value': '30 + 40'},
                 {'id': 78678, 'result': '110', 'value': '70 + 40'}
             ]})
 
+    def test_search_id_user_and_get_info(self):
+        # Создаем файл с данным
+        write_data(data_json_two_users)
+
+        # Проверяем на наличие и сходимости
+        self.assertEqual(
+            load_data_for_id_user('198498415'),
+            [{'id': 8034, 'result': '96.0', 'value': '15 + 81'},
+             {'id': 947, 'result': '5882.0', 'value': '988 + 4894'},
+             {'id': 6363, 'result': '10.0', 'value': '8 + 2 1'},
+             {'id': 6363, 'result': '10.0', 'value': '8 + 2 1'}])
+
+
+    def test_delete_data_of_id_user(self):
+        # Создаем файл с данным
+        write_data(data_json_two_users)
+
+        # Удаляем данные по id пользователя
+        delete_data_for_id_user('369350478')
+
+        # Проверяем на наличие и сходимости
+        self.assertEqual(
+            load_data_for_id_user('198498415'),
+            [{'id': 8034, 'result': '96.0', 'value': '15 + 81'},
+             {'id': 947, 'result': '5882.0', 'value': '988 + 4894'},
+             {'id': 6363, 'result': '10.0', 'value': '8 + 2 1'},
+             {'id': 6363, 'result': '10.0', 'value': '8 + 2 1'}])
