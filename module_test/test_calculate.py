@@ -33,3 +33,7 @@ class test_calculate(unittest.TestCase):
     # Умножение на 0
     def test_9(self):
         self.assertEqual(smc('1 * 0').result, 0.0)
+
+
+if __name__ == '__main__':
+    unittest.main()
