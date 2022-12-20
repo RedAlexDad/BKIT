@@ -1,6 +1,6 @@
 import unittest
 
-# Подключение библиотеки mock текст
+# Подключение библиотеки test_mock текст
 from unittest.mock import patch, Mock
 
 from function.Unique import Unique
@@ -20,7 +20,7 @@ class test_unique(unittest.TestCase):
         # Проверяем
         self.assertEqual(
             arr_unique,
-            [1, 2]
+            mock_data.return_value
         )
 
     # Проверка на чисел
@@ -30,7 +30,8 @@ class test_unique(unittest.TestCase):
         mock_value.return_value = 1.0
 
         self.assertEqual(
-            get_coef_test_no_cmd(1, 1), 1.0
+            get_coef_test_no_cmd(1, 1),
+            mock_value.return_value
         )
 
     # Тест на нулевое числа
@@ -39,7 +40,8 @@ class test_unique(unittest.TestCase):
         mock_value.return_value = 0.0
 
         self.assertEqual(
-            get_coef_test_no_cmd(2, 0), 0.0
+            get_coef_test_no_cmd(2, 0),
+            mock_value.return_value
         )
 
 
